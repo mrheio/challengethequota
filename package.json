@@ -16,11 +16,13 @@
     "@xata.io/drizzle": "^0.0.21",
     "drizzle-orm": "^0.30.8",
     "nuxt": "^3.11.2",
+    "radix-vue": "^1.7.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.3.6",
+    "@nuxtjs/color-mode": "^3.4.0",
     "eslint": "^9.0.0",
     "prettier": "3.2.5"
   }
