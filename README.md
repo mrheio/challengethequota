@@ -3,7 +3,7 @@
 ## TODO
 
 -   [x] Make it deploy
--   [] Scaffold basic ui with mock data
+-   [x] Scaffold basic ui with mock data
 -   [] Add color mode (dark/light theme)
 -   [] Set up database (w/ xata)
 -   [] Attach database to UI
