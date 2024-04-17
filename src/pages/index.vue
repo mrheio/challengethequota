@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const post = {
+    id: 'test',
     title: 'Blog post title 1',
     body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia, odio. Eum corporis, odio aliquam aperiam ad magnam consequuntur tempora unde, minus voluptate sit dolor quia reiciendis dolore rerum amet doloremque quis fugiat laboriosam aspernatur ipsam beatae deleniti? Similique ipsum aliquid officia praesentium itaque? Velit voluptatem iusto saepe optio eligendi! Nostrum asperiores, voluptatum minus iure nulla error ex consequuntur debitis neque!',
     tags: ['politics', 'economics', 'trendy', 'usa', 'money laundry'],
@@ -13,44 +14,20 @@ const post = {
     <header>
         <div class="header">
             <div class="container header__layout">
-                <Card fluid>
-                    <img :src="post.image_url" alt="{{ post.title }}" />
-                    <h3>{{ post.title }}</h3>
-                    <p>{{ post.body }}</p>
-                    <p>
-                        {{ new Date('2023-01-22 00:00:00').toLocaleString() }}
-                    </p>
-                </Card>
+                <CardPost :post="post" />
                 <div class="header__aside">
-                    <Card fluid v-for="item in new Array(3)">
-                        <img :src="post.image_url" alt="{{ post.title }}" />
-                        <h3>{{ post.title }}</h3>
-                        <p>
-                            {{
-                                new Date('2023-01-22 00:00:00').toLocaleString()
-                            }}
-                        </p>
-                    </Card>
+                    <CardPost
+                        :post="post"
+                        hide-body
+                        v-for="item in new Array(3)"
+                    />
                 </div>
             </div>
         </div>
     </header>
     <main role="main" class="main">
         <div class="container main__layout">
-            <Card :fluid="true" v-for="item in new Array(6)">
-                <div class="post-card__layout">
-                    <img :src="post.image_url" alt="{{ post.title }}" />
-                    <div>
-                        <h3>{{ post.title }}</h3>
-                        <p>
-                            {{
-                                new Date('2023-01-22 00:00:00').toLocaleString()
-                            }}
-                        </p>
-                        <p class="text-preview">{{ post.body }}</p>
-                    </div>
-                </div>
-            </Card>
+            <CardPost :post="post" horizontal v-for="item in new Array(6)" />
         </div>
     </main>
 </template>

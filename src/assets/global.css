@@ -51,9 +51,9 @@ h6 {
     overflow-wrap: break-word;
 }
 
-#root,
-#__next {
-    isolation: isolate;
+a {
+    color: inherit;
+    text-decoration: inherit;
 }
 
 .container {
