@@ -3,7 +3,9 @@
 <template>
     <nav class="nav">
         <div class="container">
-            <div class="logo"><a href="#">challenge-the-quota</a></div>
+            <div class="logo">
+                <NuxtLink href="/">challenge-the-quota</NuxtLink>
+            </div>
         </div>
     </nav>
 </template>

@@ -20,6 +20,7 @@
 
 .footer__list {
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     list-style: none;
 }
