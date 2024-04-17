@@ -7,7 +7,7 @@ const props = defineProps<{ fluid?: boolean; href?: string }>();
 <template>
     <component
         :is="props.href !== undefined ? NuxtLink : 'div'"
-        class="card"
+        class="card shadow"
         :class="{ fluid: props.fluid }"
         v-bind="{ ...props }"
     >
@@ -17,15 +17,21 @@ const props = defineProps<{ fluid?: boolean; href?: string }>();
 
 <style scoped lang="css">
 .card {
+    --clr-bg: var(--clr-bg-dark);
+
     display: block;
 
     max-width: 512px;
     padding: 1rem;
 
+    background-color: var(--clr-bg);
     border-radius: 4px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
     transition: all 0.3s ease-in-out;
+}
+
+.light-mode .card {
+    --clr-bg: var(--clr-bg-light);
 }
 
 .card:hover {

@@ -13,9 +13,9 @@
 
 <style>
 .footer {
-    min-height: 40vh;
+    min-height: 20vh;
     padding: 0.5rem 1.5rem;
-    background-color: gray;
+    background-color: var(--clr-bg-dark);
 }
 
 .footer__list {

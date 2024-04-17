@@ -11,6 +11,7 @@ export default defineNuxtConfig({
         '@nuxtjs/color-mode',
         'radix-vue/nuxt',
         '@nuxtjs/stylelint-module',
+        'nuxt-icon',
     ],
     colorMode: {
         fallback: 'dark',
