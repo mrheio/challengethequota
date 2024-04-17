@@ -9,8 +9,6 @@
 }
 
 body {
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
     font-family:
         system-ui,
         -apple-system,
@@ -23,6 +21,8 @@ body {
         'Open Sans',
         'Helvetica Neue',
         sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
 }
 
 img,
@@ -70,5 +70,10 @@ h6 {
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
+
     -webkit-line-clamp: 3;
+}
+
+.shadow {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }

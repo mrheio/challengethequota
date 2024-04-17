@@ -14,8 +14,8 @@
 <style>
 .footer {
     min-height: 40vh;
-    background-color: gray;
     padding: 0.5rem 1.5rem;
+    background-color: gray;
 }
 
 .footer__list {

@@ -7,7 +7,11 @@ export default defineNuxtConfig({
         XATA_API_KEY: '',
     },
     css: ['~/assets/global.css'],
-    modules: ['@nuxtjs/color-mode', 'radix-vue/nuxt'],
+    modules: [
+        '@nuxtjs/color-mode',
+        'radix-vue/nuxt',
+        '@nuxtjs/stylelint-module',
+    ],
     colorMode: {
         fallback: 'dark',
     },
