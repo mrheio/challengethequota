@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { db } from '~/db';
+
 const post = {
     id: 'test',
     title: 'Blog post title 1',
@@ -8,28 +10,38 @@ const post = {
     image_url:
         'https://images.pexels.com/photos/20860153/pexels-photo-20860153/free-photo-of-wave-in-a-sea-in-black-and-white.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
 };
+
+const posts = await db.query.posts.findMany();
+console.log(posts);
 </script>
 
 <template>
-    <header>
-        <div class="header">
-            <div class="container header__layout">
-                <CardPost :post="post" />
-                <div class="header__aside">
-                    <CardPost
-                        :post="post"
-                        hide-body
-                        v-for="item in new Array(3)"
-                    />
+    <div>
+        <div v-for="post in posts">{{ post.title }}</div>
+        <header>
+            <div class="header">
+                <div class="container header__layout">
+                    <CardPost :post="post" />
+                    <div class="header__aside">
+                        <CardPost
+                            :post="post"
+                            hide-body
+                            v-for="item in new Array(3)"
+                        />
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
-    <main role="main" class="main">
-        <div class="container main__layout">
-            <CardPost :post="post" horizontal v-for="item in new Array(6)" />
-        </div>
-    </main>
+        </header>
+        <main role="main" class="main">
+            <div class="container main__layout">
+                <CardPost
+                    :post="post"
+                    horizontal
+                    v-for="item in new Array(6)"
+                />
+            </div>
+        </main>
+    </div>
 </template>
 
 <style scoped>
