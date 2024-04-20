@@ -1,10 +1,10 @@
 import { defineConfig, type Config } from 'drizzle-kit';
-import { xata } from './src/db';
 
 export default defineConfig({
-    schema: './db/schema.ts',
-    driver: 'pg',
+    schema: './src/db/schema.ts',
+    driver: 'turso',
     dbCredentials: {
-        connectionString: xata.sql.connectionString,
+        url: process.env.TURSO_CONNECTION_URL!,
+        authToken: process.env.TURSO_AUTH_TOKEN!,
     },
 }) satisfies Config;
