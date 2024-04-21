@@ -1,32 +1,31 @@
 <script setup lang="ts">
 import { db } from '~/db';
 
-const post = {
-    id: 'test',
-    title: 'Blog post title 1',
-    body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia, odio. Eum corporis, odio aliquam aperiam ad magnam consequuntur tempora unde, minus voluptate sit dolor quia reiciendis dolore rerum amet doloremque quis fugiat laboriosam aspernatur ipsam beatae deleniti? Similique ipsum aliquid officia praesentium itaque? Velit voluptatem iusto saepe optio eligendi! Nostrum asperiores, voluptatum minus iure nulla error ex consequuntur debitis neque!',
-    tags: ['politics', 'economics', 'trendy', 'usa', 'money laundry'],
-    created_at: 1713191482,
-    image_url:
-        'https://images.pexels.com/photos/20860153/pexels-photo-20860153/free-photo-of-wave-in-a-sea-in-black-and-white.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-};
-
 const posts = await db.query.posts.findMany();
-console.log(posts);
+const [mainPost, sidePost1, sidePost2, sidePost3, ...otherPosts] = posts;
 </script>
 
 <template>
     <div>
-        <div v-for="post in posts">{{ post.title }}</div>
         <header>
             <div class="header">
                 <div class="container header__layout">
-                    <CardPost :post="post" />
+                    <CardPost v-if="mainPost" :post="mainPost" />
                     <div class="header__aside">
                         <CardPost
-                            :post="post"
+                            v-if="sidePost1"
+                            :post="sidePost1"
                             hide-body
-                            v-for="item in new Array(3)"
+                        />
+                        <CardPost
+                            v-if="sidePost2"
+                            :post="sidePost2"
+                            hide-body
+                        />
+                        <CardPost
+                            v-if="sidePost3"
+                            :post="sidePost3"
+                            hide-body
                         />
                     </div>
                 </div>
@@ -34,11 +33,7 @@ console.log(posts);
         </header>
         <main role="main" class="main">
             <div class="container main__layout">
-                <CardPost
-                    :post="post"
-                    horizontal
-                    v-for="item in new Array(6)"
-                />
+                <CardPost v-for="post in otherPosts" :post="post" horizontal />
             </div>
         </main>
     </div>
@@ -83,5 +78,9 @@ console.log(posts);
     .post-card__layout img {
         max-width: 240px;
     }
+}
+
+.empty {
+    text-align: center;
 }
 </style>

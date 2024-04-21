@@ -1,41 +1,39 @@
 <script setup lang="ts">
+import type { Post } from '~/types';
+
 const props = defineProps<{
-    post: any;
+    post: Post;
     hideBody?: boolean;
     horizontal?: boolean;
 }>();
 </script>
 
 <template>
-    <Card fluid :href="`/posts/${props.post.id}`" v-bind="{ ...props }">
-        <div v-if="!props.horizontal">
+    <Card fluid :href="`/posts/${post.id}`" v-bind="{ ...props }">
+        <div v-if="!horizontal">
             <img
-                :src="props.post.image_url"
-                alt="{{ props.post.title }}"
+                :src="post.imageUrl ?? ''"
+                :alt="post.title"
                 class="card-post__img"
             />
-            <h3>{{ props.post.title }}</h3>
-            <p v-if="!props.hideBody" class="text-preview">
-                {{ props.post.body }}
+            <h3>{{ post.title }}</h3>
+            <p v-if="!hideBody" class="text-preview">
+                {{ post.body }}
             </p>
             <small>
-                {{ new Date(props.post.created_at).toLocaleString() }}
+                {{ post.createdAt }}
             </small>
         </div>
 
-        <div v-if="props.horizontal" class="post-card__layout--horizontal">
-            <img
-                :src="props.post.image_url"
-                alt="{{ props.post.title }}"
-                class="card-post__img"
-            />
+        <div v-if="horizontal" class="post-card__layout--horizontal">
+            <img src="" :alt="post.title" class="card-post__img" />
             <div>
-                <h3>{{ props.post.title }}</h3>
-                <p v-if="!props.hideBody" class="text-preview">
-                    {{ props.post.body }}
+                <h3>{{ post.title }}</h3>
+                <p v-if="!hideBody" class="text-preview">
+                    {{ post.body }}
                 </p>
                 <small>
-                    {{ new Date(props.post.created_at).toLocaleString() }}
+                    {{ post.createdAt }}
                 </small>
             </div>
         </div>
