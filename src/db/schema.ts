@@ -1,25 +1,34 @@
-import {
-    integer,
-    pgTable,
-    serial,
-    text,
-    timestamp,
-    varchar,
-} from 'drizzle-orm/pg-core';
+import { sql } from 'drizzle-orm';
+import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
-export const posts = pgTable('posts', {
-    id: serial('id').primaryKey(),
-    title: varchar('name', { length: 256 }).notNull().unique(),
+const unixepoch = sql`(unixepoch())`;
+
+export const users = sqliteTable('users', {
+    id: integer('id').primaryKey(),
+    username: text('username').notNull().unique(),
+    email: text('email').notNull().unique(),
+    password: text('password').notNull(),
+    createdAt: integer('created_at', { mode: 'timestamp' })
+        .notNull()
+        .default(unixepoch),
+});
+
+export const posts = sqliteTable('posts', {
+    id: integer('id').primaryKey(),
+    title: text('name').notNull().unique(),
     body: text('body').notNull(),
-    createdAt: timestamp('created_at').defaultNow(),
+    imageUrl: text('image_url'),
+    createdAt: integer('created_at', { mode: 'timestamp' })
+        .notNull()
+        .default(unixepoch),
 });
 
-export const tags = pgTable('tags', {
-    id: serial('id').primaryKey(),
-    name: varchar('name', { length: 256 }).notNull().unique(),
+export const tags = sqliteTable('tags', {
+    id: integer('id').primaryKey(),
+    name: text('name').notNull().unique(),
 });
 
-export const postsToTags = pgTable('postsToTags', {
+export const postsToTags = sqliteTable('postsToTags', {
     postId: integer('post_id')
         .notNull()
         .references(() => posts.id),
