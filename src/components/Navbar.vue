@@ -9,32 +9,43 @@ const toggleColorMode = () => {
     }
 };
 
-watch(colorMode, (val) => {
-    console.log(val);
-});
+const { status, data, signOut } = useAuth();
 </script>
 
 <template>
     <nav class="nav">
         <div class="container nav__layout">
             <div class="nav__logo">
-                <NuxtLink href="/">c-t-q</NuxtLink>
+                <NuxtLink href="/">ctq</NuxtLink>
             </div>
 
-            <button
-                type="button"
-                @click="toggleColorMode"
-                class="nav__theme-btn"
-            >
-                <Icon
-                    :name="
-                        $colorMode.value === 'light'
-                            ? 'material-symbols:dark-mode'
-                            : 'material-symbols:wb-sunny'
-                    "
-                    size="1.5em"
-                />
-            </button>
+            <div>
+                <button
+                    v-if="status === 'authenticated'"
+                    @click="() => signOut({ callbackUrl: '/' })"
+                >
+                    {{ data?.user.username }} - Sign Out
+                </button>
+
+                <NuxtLink v-if="status === 'unauthenticated'" href="/login">
+                    Enter account
+                </NuxtLink>
+
+                <button
+                    type="button"
+                    @click="toggleColorMode"
+                    class="nav__theme-btn"
+                >
+                    <Icon
+                        :name="
+                            $colorMode.value === 'light'
+                                ? 'material-symbols:dark-mode'
+                                : 'material-symbols:wb-sunny'
+                        "
+                        size="1.5em"
+                    />
+                </button>
+            </div>
         </div>
     </nav>
 </template>

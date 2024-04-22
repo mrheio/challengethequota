@@ -6,8 +6,8 @@
 -   [x] Scaffold basic ui with mock data
 -   [x] Add color mode (dark/light theme)
 -   [x] Set up database (w/ xata)
--   [] Attach database to UI
--   [] Add authentication (w/ to be decided)
+-   [x] Attach database to UI
+-   [x] Add authentication (w/ sidebase nuxt-auth)
 -   [] Add UI to manage blog posts
 -   [] Make manage blog posts UI accessible only to admin users
 -   [] Let users leave blog posts comments

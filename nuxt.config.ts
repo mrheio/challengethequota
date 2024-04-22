@@ -2,15 +2,40 @@
 export default defineNuxtConfig({
     srcDir: 'src/',
     devtools: { enabled: true },
-    runtimeConfig: {
-        XATA_BRANCH: '',
-        XATA_API_KEY: '',
-    },
     css: ['~/assets/global.css'],
     modules: [
         '@nuxtjs/color-mode',
         'radix-vue/nuxt',
         '@nuxtjs/stylelint-module',
         'nuxt-icon',
+        '@sidebase/nuxt-auth',
+        '@vee-validate/nuxt',
     ],
+    auth: {
+        provider: {
+            type: 'local',
+            token: {
+                signInResponseTokenPointer: '/accessToken',
+            },
+            sessionDataType: { user: { username: 'string' } },
+        },
+    },
+    vite: {
+        optimizeDeps: {
+            exclude: ['jsonwebtoken'],
+        },
+    },
+    runtimeConfig: {
+        authSecret: '',
+    },
+    veeValidate: {
+        autoImports: true,
+        componentNames: {
+            Form: 'VeeForm',
+            Field: 'VeeField',
+            FieldArray: 'VeeFieldArray',
+            ErrorMessage: 'VeeErrorMessage',
+        },
+        typedSchemaPackage: 'zod',
+    },
 });

@@ -1,27 +1,51 @@
 :root {
     --clr-gray-50: #f6f6f6;
+    --clr-gray-50-o60: #f6f6f699;
     --clr-gray-100: #e7e7e7;
+    --clr-gray-100-o60: #e7e7e799;
     --clr-gray-200: #d1d1d1;
+    --clr-gray-200-o60: #d1d1d199;
     --clr-gray-300: #b0b0b0;
+    --clr-gray-300-o60: #b0b0b099;
     --clr-gray-400: #888888;
+    --clr-gray-400-o60: #88888899;
     --clr-gray-500: #777777;
+    --clr-gray-500-o60: #77777799;
     --clr-gray-600: #5d5d5d;
+    --clr-gray-600-o60: #5d5d5d99;
     --clr-gray-700: #4f4f4f;
+    --clr-gray-700-o60: #4f4f4f99;
     --clr-gray-800: #454545;
+    --clr-gray-800-o60: #45454599;
     --clr-gray-900: #3d3d3d;
+    --clr-gray-900-o60: #3d3d3d99;
     --clr-gray-950: #262626;
+    --clr-gray-950-o60: #26262699;
 
     --clr-royal-blue-50: #eef6ff;
+    --clr-royal-blue-50-o60: #eef6ff99;
     --clr-royal-blue-100: #e0efff;
+    --clr-royal-blue-100-o60: #e0efff99;
     --clr-royal-blue-200: #c7e0fe;
+    --clr-royal-blue-200-o60: #c7e0fe99;
     --clr-royal-blue-300: #a6cafb;
+    --clr-royal-blue-300-o60: #a6cafb99;
     --clr-royal-blue-400: #82abf7;
+    --clr-royal-blue-400-o60: #82abf799;
     --clr-royal-blue-500: #648bf0;
+    --clr-royal-blue-500-o60: #648bf099;
     --clr-royal-blue-600: #5673e6;
+    --clr-royal-blue-600-o60: #5673e699;
     --clr-royal-blue-700: #3953c9;
+    --clr-royal-blue-700-o60: #3953c999;
     --clr-royal-blue-800: #3147a2;
+    --clr-royal-blue-800-o60: #3147a299;
     --clr-royal-blue-900: #2f4180;
+    --clr-royal-blue-900-o60: #2f418099;
     --clr-royal-blue-950: #1b244b;
+    --clr-royal-blue-950-o60: #1b244b99;
+
+    --clr-error: #bc3d5f;
 }
 
 :root.light-mode {
@@ -157,4 +181,8 @@ a {
 
 .shadow {
     box-shadow: rgba(20, 20, 30, 0.2) 0px 7px 29px 0px;
+}
+
+.min-h-screen {
+    min-height: 100vh;
 }

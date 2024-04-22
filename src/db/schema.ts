@@ -11,6 +11,9 @@ export const users = sqliteTable('users', {
     createdAt: integer('created_at', { mode: 'timestamp' })
         .notNull()
         .default(unixepoch),
+    role: text('role', { enum: ['normal', 'admin'] })
+        .notNull()
+        .default('normal'),
 });
 
 export const posts = sqliteTable('posts', {
