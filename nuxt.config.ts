@@ -11,6 +11,10 @@ export default defineNuxtConfig({
         '@sidebase/nuxt-auth',
         '@vee-validate/nuxt',
     ],
+    runtimeConfig: {
+        authSecret: '',
+        authTokenMaxAge: '',
+    },
     auth: {
         provider: {
             type: 'local',
@@ -24,9 +28,6 @@ export default defineNuxtConfig({
         optimizeDeps: {
             exclude: ['jsonwebtoken'],
         },
-    },
-    runtimeConfig: {
-        authSecret: '',
     },
     veeValidate: {
         autoImports: true,
