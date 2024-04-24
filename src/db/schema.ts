@@ -16,6 +16,14 @@ export const users = sqliteTable('users', {
         .default('normal'),
 });
 
+export const sessions = sqliteTable('sessions', {
+    id: text('id').primaryKey(),
+    userId: integer('user_id')
+        .notNull()
+        .references(() => users.id),
+    expiresAt: integer('expires_at').notNull(),
+});
+
 export const posts = sqliteTable('posts', {
     id: integer('id').primaryKey(),
     title: text('name').notNull().unique(),
@@ -24,6 +32,9 @@ export const posts = sqliteTable('posts', {
     createdAt: integer('created_at', { mode: 'timestamp' })
         .notNull()
         .default(unixepoch),
+    createdBy: integer('created_by')
+        .notNull()
+        .references(() => users.id),
 });
 
 export const tags = sqliteTable('tags', {

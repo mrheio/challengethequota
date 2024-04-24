@@ -1,7 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-    middleware: 'auth',
-    auth: { unauthenticatedOnly: true },
+    middleware: 'guest-only',
 });
 
 import {
@@ -12,16 +11,17 @@ import {
 const panel = ref<'login' | 'register'>('login');
 const loginValidationSchema = toTypedSchema(loginRequestUserSchema);
 const registerValidationSchema = toTypedSchema(registerRequestUserSchema);
-const { signIn, signUp } = useAuth();
 
 const login = async (values: Zod.infer<typeof loginRequestUserSchema>) => {
-    await signIn(values, { callbackUrl: '/' });
+    await $fetch('/api/auth/login', { method: 'POST', body: values });
+    reloadNuxtApp();
 };
 
 const register = async (
     values: Zod.infer<typeof registerRequestUserSchema>,
 ) => {
-    await signUp(values, { callbackUrl: '/' });
+    await $fetch('/api/auth/register', { method: 'POST', body: values });
+    reloadNuxtApp();
 };
 </script>
 

@@ -8,27 +8,9 @@ export default defineNuxtConfig({
         'radix-vue/nuxt',
         '@nuxtjs/stylelint-module',
         'nuxt-icon',
-        '@sidebase/nuxt-auth',
         '@vee-validate/nuxt',
     ],
-    runtimeConfig: {
-        authSecret: '',
-        authTokenMaxAge: '',
-    },
-    auth: {
-        provider: {
-            type: 'local',
-            token: {
-                signInResponseTokenPointer: '/accessToken',
-            },
-            sessionDataType: { user: { username: 'string' } },
-        },
-    },
-    vite: {
-        optimizeDeps: {
-            exclude: ['jsonwebtoken'],
-        },
-    },
+    runtimeConfig: {},
     veeValidate: {
         autoImports: true,
         componentNames: {

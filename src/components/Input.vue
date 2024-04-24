@@ -6,33 +6,21 @@ const props = defineProps<{
     id?: string;
     name: string;
     type?: InputTypeHTMLAttribute;
-    value?: string;
     placeholder?: string;
 }>();
 
-const name = toRef(props, 'name');
-
-const {
-    value: inputValue,
-    errorMessage,
-    handleBlur,
-    handleChange,
-} = useField(name, undefined, {
-    initialValue: props.value,
-});
+const { value, errorMessage } = useField(() => props.name);
 </script>
 
 <template>
     <div class="input-container" :class="{ error: !!errorMessage }">
         <label v-if="label" :for="id ?? name">{{ label }}</label>
         <input
+            v-model="value"
             :type="type"
-            :name="name"
             :id="id ?? name"
-            :value="inputValue"
+            :name="name"
             :placeholder="placeholder"
-            @input="handleChange"
-            @blur="handleBlur"
         />
         <p v-show="errorMessage" class="error">{{ errorMessage }}</p>
     </div>

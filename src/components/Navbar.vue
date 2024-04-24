@@ -9,7 +9,12 @@ const toggleColorMode = () => {
     }
 };
 
-const { status, data, signOut } = useAuth();
+const user = useUser();
+
+const logout = async () => {
+    await $fetch('/api/auth/logout', { method: 'POST' });
+    reloadNuxtApp();
+};
 </script>
 
 <template>
@@ -20,16 +25,11 @@ const { status, data, signOut } = useAuth();
             </div>
 
             <div>
-                <button
-                    v-if="status === 'authenticated'"
-                    @click="() => signOut({ callbackUrl: '/' })"
-                >
-                    {{ data?.user.username }} - Sign Out
+                <button v-if="user" @click="logout">
+                    {{ user.username }} - Sign Out
                 </button>
 
-                <NuxtLink v-if="status === 'unauthenticated'" href="/login">
-                    Enter account
-                </NuxtLink>
+                <NuxtLink v-if="!user" href="/login"> Enter account </NuxtLink>
 
                 <button
                     type="button"

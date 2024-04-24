@@ -1,6 +1,7 @@
 import { db } from '~/db';
-import { checkPasswords, signJWT } from '~/server/utils/auth';
-import { UnauthorizedError } from '~/server/utils/errors';
+import { checkPasswords } from '~/server/auth';
+import { UnauthorizedError } from '~/server/errors';
+import { lucia } from '~/server/lucia';
 import { loginRequestUserSchema } from '~/validation';
 
 export default defineEventHandler(async (event) => {
@@ -22,14 +23,11 @@ export default defineEventHandler(async (event) => {
 
     if (!doPasswordsMatch) throw UnauthorizedError();
 
-    const payload = {
-        user: {
-            username: user.username,
-            role: user.role,
-        },
-    };
-
-    const [accessToken, refreshToken] = signJWT(event, payload);
-
-    return { accessToken, refreshToken };
+    const session = await lucia.createSession(user.id, {});
+    appendHeader(
+        event,
+        'Set-Cookie',
+        lucia.createSessionCookie(session.id).serialize(),
+    );
+    return;
 });

@@ -1,7 +1,8 @@
 import { db } from '~/db';
 import { users } from '~/db/schema';
-import { hashPassword } from '~/server/utils/auth';
-import { UnauthorizedError } from '~/server/utils/errors';
+import { hashPassword } from '~/server/auth';
+import { UnauthorizedError } from '~/server/errors';
+import { lucia } from '~/server/lucia';
 import { registerRequestUserSchema } from '~/validation';
 
 export default defineEventHandler(async (event) => {
@@ -12,7 +13,16 @@ export default defineEventHandler(async (event) => {
 
     const hashedPassword = await hashPassword(result.data.password);
 
-    await db.insert(users).values({ ...result.data, password: hashedPassword });
+    const insertRes = await db
+        .insert(users)
+        .values({ ...result.data, password: hashedPassword })
+        .returning();
 
+    const session = await lucia.createSession(insertRes[0].id, {});
+    appendHeader(
+        event,
+        'Set-Cookie',
+        lucia.createSessionCookie(session.id).serialize(),
+    );
     return;
 });
