@@ -1,0 +1,15 @@
+meta {
+  name: list
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{API_URL}}/posts?created_by=1
+  body: none
+  auth: none
+}
+
+query {
+  created_by: 1
+}
