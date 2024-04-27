@@ -1,5 +1,6 @@
 import { createInsertSchema } from 'drizzle-zod';
-import { users } from './db/schema';
+import { z } from 'zod';
+import { posts, users } from './db/schema';
 
 export const insertUserSchema = createInsertSchema(users, {
     email: (schema) => schema.email.email(),
@@ -16,4 +17,19 @@ export const registerRequestUserSchema = insertUserSchema.pick({
     email: true,
     username: true,
     password: true,
+});
+
+export const insertPostSchema = createInsertSchema(posts, {
+    title: (schema) => schema.title.min(3),
+});
+
+export const createPostRequestSchema = insertPostSchema.pick({
+    title: true,
+    body: true,
+});
+
+export const selectPostsRequestQueryParamsSchema = z.object({
+    created_by: z
+        .union([z.coerce.number(), z.array(z.coerce.number())])
+        .optional(),
 });
