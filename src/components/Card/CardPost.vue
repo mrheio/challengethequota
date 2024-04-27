@@ -21,7 +21,7 @@ const props = defineProps<{
                 {{ post.body }}
             </p>
             <small>
-                {{ post.createdAt }}
+                {{ post.createdAt.toLocaleString('en-GB') }}
             </small>
         </div>
 
@@ -33,7 +33,7 @@ const props = defineProps<{
                     {{ post.body }}
                 </p>
                 <small>
-                    {{ post.createdAt }}
+                    {{ post.createdAt.toLocaleString('en-GB') }}
                 </small>
             </div>
         </div>
