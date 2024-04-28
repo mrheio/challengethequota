@@ -4,13 +4,13 @@ import { UnauthorizedError } from '~/server/errors';
 import { insertPostSchema } from '~/validation';
 
 export default defineEventHandler(async (event) => {
-    const body = await readBody(event);
     const user = event.context.user;
 
     if (!user) {
         throw UnauthorizedError();
     }
 
+    const body = await readBody(event);
     const data = { ...body, createdBy: user.id };
     const result = insertPostSchema.safeParse(data);
 
@@ -23,5 +23,7 @@ export default defineEventHandler(async (event) => {
     const inserted = await db.insert(posts).values(post).returning();
 
     setResponseStatus(event, 201);
-    return inserted;
+    setHeader(event, 'Location', `/posts/${inserted[0].id}`);
+
+    return { items: inserted };
 });

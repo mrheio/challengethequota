@@ -1,4 +1,7 @@
 <script setup lang="ts">
+const route = useRoute();
+const [, toggleSidebar] = useSidebar();
+
 const colorMode = useColorMode();
 
 const toggleColorMode = () => {
@@ -45,6 +48,25 @@ const logout = async () => {
                         size="1.5em"
                     />
                 </button>
+                <NuxtLink
+                    href="/admin"
+                    class="nav__btn"
+                    v-if="!route.path.includes('/admin')"
+                >
+                    <Icon
+                        name="material-symbols:admin-panel-settings-rounded"
+                        size="1.5em"
+                    />
+                </NuxtLink>
+
+                <button
+                    v-if="route.path.includes('/admin')"
+                    type="button"
+                    class="nav__btn"
+                    @click="toggleSidebar"
+                >
+                    <Icon name="material-symbols:menu-rounded" size="1.5em" />
+                </button>
             </div>
         </div>
     </nav>
@@ -73,6 +95,16 @@ const logout = async () => {
 .nav__logo {
     font-size: 2rem;
     font-weight: bold;
+}
+
+.nav__btn {
+    cursor: pointer;
+
+    color: inherit;
+
+    background-color: transparent;
+    border: none;
+    outline: none;
 }
 
 .nav__theme-btn {

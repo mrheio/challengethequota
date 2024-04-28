@@ -8,7 +8,7 @@
 -   [x] Set up database (w/ xata)
 -   [x] Attach database to UI
 -   [x] Add authentication (w/ sidebase nuxt-auth)
--   [] Add UI to manage blog posts
+-   [x] Add UI to manage blog posts
 -   [] Make manage blog posts UI accessible only to admin users
 -   [] Let users leave blog posts comments
 -   [] Add UI to manage blog posts comments
