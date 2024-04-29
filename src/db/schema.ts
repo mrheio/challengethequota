@@ -50,3 +50,17 @@ export const postsToTags = sqliteTable('postsToTags', {
         .notNull()
         .references(() => tags.id),
 });
+
+export const comments = sqliteTable('comments', {
+    id: integer('id').primaryKey(),
+    body: text('body').notNull(),
+    createdAt: integer('created_at', { mode: 'timestamp' })
+        .notNull()
+        .default(unixepoch),
+    createdBy: text('created_by')
+        .notNull()
+        .references(() => users.username),
+    postId: integer('post_id')
+        .notNull()
+        .references(() => posts.id),
+});
