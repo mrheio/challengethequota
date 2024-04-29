@@ -9,8 +9,8 @@
 -   [x] Attach database to UI
 -   [x] Add authentication (w/ sidebase nuxt-auth)
 -   [x] Add UI to manage blog posts
--   [] Make manage blog posts UI accessible only to admin users
--   [] Let users leave blog posts comments
+-   [x] Make manage blog posts UI accessible only to admin users
+-   [x] Let users leave blog posts comments
 -   [] Add UI to manage blog posts comments
 -   [] Make manage comments accessible only to admin users
 -   [] Add image upload to blog posts

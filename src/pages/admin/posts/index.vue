@@ -1,5 +1,5 @@
 <script setup lang="ts">
-definePageMeta({ middleware: ['protected'], layout: 'admin' });
+definePageMeta({ middleware: ['protected', 'admin'], layout: 'admin' });
 
 const { data: posts } = await useFetch('/api/posts');
 

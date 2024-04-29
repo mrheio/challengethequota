@@ -1,4 +1,6 @@
 <script setup lang="ts">
+definePageMeta({ middleware: ['protected', 'admin'], layout: 'admin' });
+
 const route = useRoute();
 
 const { data } = await useFetch(`/api/posts/${route.params.id}`);
